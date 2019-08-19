@@ -3,8 +3,8 @@ Showcasing Quagga2 in combination with ReactJS
 
 # How to run
 
-```npm run build```
+```npm run start```
 
 then
 
-Open `dist/index.html` in your browser.
+Open `localhost:3000` in your browser.
