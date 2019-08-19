@@ -1,9 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-export default React.createClass({
-    propTypes: {
-        result: React.PropTypes.object
-    },
+class Result extends React.Component {
     render() {
         const result = this.props.result;
 
@@ -16,4 +14,10 @@ export default React.createClass({
             </li>
         );
     }
-});
+}
+
+Result.propTypes = {
+    result: PropTypes.object
+};
+
+export default Result;

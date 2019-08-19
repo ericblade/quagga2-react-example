@@ -1,16 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Quagga from '@ericblade/quagga2';
 
-export default React.createClass({
-    propTypes: {
-        onDetected: React.PropTypes.func.isRequired
-    },
+class Scanner extends React.Component {
     render() {
         return (
             <div id="interactive" className="viewport"/>
         );
-    },
-
+    }
     componentDidMount() {
         Quagga.init({
             inputStream: {
@@ -37,13 +34,17 @@ export default React.createClass({
             Quagga.start();
         });
         Quagga.onDetected(this._onDetected);
-    },
-
+    }
     componentWillUnmount() {
         Quagga.offDetected(this._onDetected);
-    },
-
+    }
     _onDetected(result) {
         this.props.onDetected(result);
     }
-});
+}
+
+Scanner.propTypes = {
+    onDetected: PropTypes.func.isRequired
+};
+
+export default Scanner;
