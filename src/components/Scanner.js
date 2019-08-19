@@ -1,5 +1,5 @@
 import React from 'react';
-import Quagga from 'quagga';
+import Quagga from '@ericblade/quagga2';
 
 export default React.createClass({
     propTypes: {

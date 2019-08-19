@@ -1,12 +1,15 @@
 {
-  "name": "quagga-react-example",
+  "name": "quagga2-react-example",
   "version": "1.0.0",
-  "description": "An example of how to use quagga in combination with react and webpack",
+  "description": "An example of how to use quagga2 in combination with react and webpack",
   "main": "index.js",
   "scripts": {
+    "build": "npm install && npx webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
+    "quaggajs",
+    "quagga2",
     "quagga",
     "react",
     "barcode",
@@ -15,7 +18,7 @@
   "author": "Christoph Oberhofer <ch.oberhofer@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "quagga": "^0.8.0",
+    "@ericblade/quagga2": "^0.0.2",
     "react": "^0.14.0",
     "react-dom": "^0.14.0"
   },
