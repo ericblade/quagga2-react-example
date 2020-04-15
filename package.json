@@ -1,6 +1,6 @@
 {
   "name": "quagga2-react-example",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "An example of how to use quagga2 in combination with react and webpack",
   "main": "index.js",
   "scripts": {
@@ -22,15 +22,15 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@ericblade/quagga2": "^0.0.19",
+    "@ericblade/quagga2": "^0.0.20",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
     "prop-types": "^15.7.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.6.4",
-    "babel-loader": "^8.0.6",
-    "@babel/preset-react": "^7.6.3",
+    "@babel/core": "^7.9.0",
+    "@babel/preset-react": "^7.9.4",
+    "babel-loader": "^8.1.0",
     "react-hot-loader": "^4.12.15",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.9",
