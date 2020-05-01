@@ -6,7 +6,9 @@
   "scripts": {
     "start": "npx webpack-dev-server -d --hot --port=3000",
     "build": "npm install && npx webpack",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "keywords": [
     "quaggajs",
@@ -25,7 +27,8 @@
     "@ericblade/quagga2": "^0.0.20",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
-    "prop-types": "^15.7.2"
+    "prop-types": "^15.7.2",
+    "snyk": "^1.316.1"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
@@ -35,5 +38,6 @@
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.9",
     "webpack-dev-server": "^3.8.2"
-  }
+  },
+  "snyk": true
 }
