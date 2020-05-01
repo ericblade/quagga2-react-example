@@ -1,0 +1,32 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.14.1
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  SNYK-JS-LODASH-567746:
+    - '@ericblade/quagga2 > lodash':
+        patched: '2020-05-01T06:54:25.062Z'
+    - '@ericblade/quagga2 > snyk > lodash':
+        patched: '2020-05-01T06:54:25.062Z'
+    - '@ericblade/quagga2 > snyk > @snyk/dep-graph > lodash':
+        patched: '2020-05-01T06:54:25.062Z'
+    - '@ericblade/quagga2 > snyk > inquirer > lodash':
+        patched: '2020-05-01T06:54:25.062Z'
+    - '@ericblade/quagga2 > snyk > snyk-config > lodash':
+        patched: '2020-05-01T06:54:25.062Z'
+    - '@ericblade/quagga2 > snyk > snyk-mvn-plugin > lodash':
+        patched: '2020-05-01T06:54:25.062Z'
+    - '@ericblade/quagga2 > snyk > snyk-nodejs-lockfile-parser > lodash':
+        patched: '2020-05-01T06:54:25.062Z'
+    - '@ericblade/quagga2 > snyk > snyk-nuget-plugin > lodash':
+        patched: '2020-05-01T06:54:25.062Z'
+    - '@ericblade/quagga2 > snyk > @snyk/dep-graph > graphlib > lodash':
+        patched: '2020-05-01T06:54:25.062Z'
+    - '@ericblade/quagga2 > snyk > snyk-go-plugin > graphlib > lodash':
+        patched: '2020-05-01T06:54:25.062Z'
+    - '@ericblade/quagga2 > snyk > snyk-nodejs-lockfile-parser > graphlib > lodash':
+        patched: '2020-05-01T06:54:25.062Z'
+    - '@ericblade/quagga2 > snyk > snyk-nuget-plugin > dotnet-deps-parser > lodash':
+        patched: '2020-05-01T06:54:25.062Z'
+    - '@ericblade/quagga2 > snyk > snyk-php-plugin > @snyk/composer-lockfile-parser > lodash':
+        patched: '2020-05-01T06:54:25.062Z'
