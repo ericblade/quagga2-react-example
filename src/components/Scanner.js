@@ -74,8 +74,8 @@ const Scanner = ({
                 // const validated = validateBarcode(result.codeResult.code);
                 // Quagga.ImageDebug.drawPath(result.line, { x: 'x', y: 'y' }, drawingCtx, { color: validated ? 'green' : 'red', lineWidth: 3 });
                 drawingCtx.font = "24px Arial";
-                drawingCtx.fillStyle = validated ? 'green' : 'red';
-                drawingCtx.fillText(`${result.codeResult.code} valid: ${validated}`, 10, 50);
+                // drawingCtx.fillStyle = validated ? 'green' : 'red';
+                // drawingCtx.fillText(`${result.codeResult.code} valid: ${validated}`, 10, 50);
                 drawingCtx.fillText(result.codeResult.code, 10, 20);
                 // if (validated) {
                 //     onDetected(result);
