@@ -97,7 +97,7 @@ const Scanner = ({
             },
             locator,
             numOfWorkers,
-            readers: decoders,
+            decoder: { readers: decoders },
             locate,
         }, (err) => {
             Quagga.onProcessed(handleProcessed);
