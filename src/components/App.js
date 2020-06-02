@@ -11,7 +11,7 @@ const App = () => {
         <div>
             <button onClick={() => setScanning(!scanning) }>{scanning ? 'Stop' : 'Start'}</button>
             <ul className="results">
-                {results.map((result) => (<Result key={result.codeResult.code} result={result} />))}
+                {results.map((result) => (result && <Result key={result.codeResult.code} result={result} />))}
             </ul>
             <div ref={scannerRef} style={{position: 'relative', border: '3px solid red'}}>
                 {/* <video style={{ width: window.innerWidth, height: 480, border: '3px solid orange' }}/> */}
