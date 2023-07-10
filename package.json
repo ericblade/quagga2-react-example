@@ -1,43 +1,39 @@
 {
   "name": "quagga2-react-example",
-  "version": "1.1.4",
-  "description": "An example of how to use quagga2 in combination with react and webpack",
-  "main": "index.js",
-  "scripts": {
-    "start": "npx webpack-dev-server -d --hot --port=3000",
-    "build": "npm install && npx webpack",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "snyk-protect": "snyk protect",
-    "prepublish": "npm run snyk-protect"
-  },
-  "keywords": [
-    "quaggajs",
-    "quagga2",
-    "quagga",
-    "react",
-    "barcode",
-    "webpack"
-  ],
-  "author": "Eric Blade <blade.eric@gmail.com>",
-  "contributors": [
-    "Christoph Oberhofer <ch.oberhofer@gmail.com>"
-  ],
-  "license": "MIT",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
-    "@ericblade/quagga2": "^1.0.6",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "prop-types": "^15.7.2",
-    "snyk": "^1.334.0"
+    "@ericblade/quagga2": "^1.8.2",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1",
+    "web-vitals": "^2.1.4"
   },
-  "devDependencies": {
-    "@babel/core": "^7.10.2",
-    "@babel/preset-react": "^7.10.1",
-    "babel-loader": "^8.1.0",
-    "react-hot-loader": "^4.12.21",
-    "webpack": "^4.43.0",
-    "webpack-cli": "^3.3.11",
-    "webpack-dev-server": "^3.11.0"
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
-  "snyk": true
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }
