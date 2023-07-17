@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import Quagga from '@ericblade/quagga2';
 
 function getMedian(arr) {
-    arr.sort((a, b) => a - b);
-    const half = Math.floor(arr.length / 2);
-    if (arr.length % 2 === 1) {
-        return arr[half];
+    const newArr = [...arr]; // copy the array before sorting, otherwise it mutates the array passed in, which is generally undesireable
+    newArr.sort((a, b) => a - b);
+    const half = Math.floor(newArr.length / 2);
+    if (newArr.length % 2 === 1) {
+        return newArr[half];
     }
-    return (arr[half - 1] + arr[half]) / 2;
+    return (newArr[half - 1] + newArr[half]) / 2;
 }
 
 function getMedianOfCodeErrors(decodedCodes) {
