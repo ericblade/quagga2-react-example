@@ -112,11 +112,10 @@ const Scanner = ({
                 decoder: { readers: decoders },
                 locate,
             }, async (err) => {
-                console.warn('* quagga.init err', err);
                 Quagga.onProcessed(handleProcessed);
 
                 if (err) {
-                    return console.log('Error starting Quagga:', err);
+                    return console.error('Error starting Quagga:', err);
                 }
                 if (scannerRef && scannerRef.current) {
                     await Quagga.start();
