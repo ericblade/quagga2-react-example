@@ -1,4 +1,4 @@
-import React, { useCallback, useLayoutEffect } from 'react';
+import { useCallback, useLayoutEffect } from 'react';
 import PropTypes from 'prop-types';
 import Quagga from '@ericblade/quagga2';
 
@@ -12,7 +12,7 @@ function getMedian(arr) {
 }
 
 function getMedianOfCodeErrors(decodedCodes) {
-    const errors = decodedCodes.filter(x => x.error !== undefined).map(x => x.error);
+    const errors = decodedCodes.flatMap(x => x.error);
     const medianOfErrors = getMedian(errors);
     return medianOfErrors;
 }
@@ -25,6 +25,7 @@ const defaultConstraints = {
 const defaultLocatorSettings = {
     patchSize: 'medium',
     halfSample: true,
+    willReadFrequently: true,
 };
 
 const defaultDecoders = ['ean_reader'];
@@ -37,7 +38,6 @@ const Scanner = ({
     facingMode,
     constraints = defaultConstraints,
     locator = defaultLocatorSettings,
-    numOfWorkers = navigator.hardwareConcurrency || 0,
     decoders = defaultDecoders,
     locate = true,
 }) => {
@@ -85,40 +85,57 @@ const Scanner = ({
     };
 
     useLayoutEffect(() => {
-        Quagga.init({
-            inputStream: {
-                type: 'LiveStream',
-                constraints: {
-                    ...constraints,
-                    ...(cameraId && { deviceId: cameraId }),
-                    ...(!cameraId && { facingMode }),
+        // if this component gets unmounted in the same tick that it is mounted, then all hell breaks loose,
+        // so we need to wait 1 tick before calling init().  I'm not sure how to fix that, if it's even possible,
+        // given the asynchronous nature of the camera functions, the non asynchronous nature of React, and just how
+        // awful browsers are at dealing with cameras.
+        let ignoreStart = false;
+        const init = async () => {
+            // wait for one tick to see if we get unmounted before we can possibly even begin cleanup
+            await new Promise((resolve) => setTimeout(resolve, 1));
+            if (ignoreStart) {
+                return;
+            }
+            // begin scanner initialization
+            await Quagga.init({
+                inputStream: {
+                    type: 'LiveStream',
+                    constraints: {
+                        ...constraints,
+                        ...(cameraId && { deviceId: cameraId }),
+                        ...(!cameraId && { facingMode }),
+                    },
+                    target: scannerRef.current,
+                    willReadFrequently: true,
                 },
-                target: scannerRef.current,
-            },
-            locator,
-            numOfWorkers,
-            decoder: { readers: decoders },
-            locate,
-        }, (err) => {
-            Quagga.onProcessed(handleProcessed);
+                locator,
+                decoder: { readers: decoders },
+                locate,
+            }, async (err) => {
+                console.warn('* quagga.init err', err);
+                Quagga.onProcessed(handleProcessed);
 
-            if (err) {
-                return console.log('Error starting Quagga:', err);
-            }
-            if (scannerRef && scannerRef.current) {
-                Quagga.start();
-                if (onScannerReady) {
-                    onScannerReady();
+                if (err) {
+                    return console.log('Error starting Quagga:', err);
                 }
-            }
-        });
-        Quagga.onDetected(errorCheck);
+                if (scannerRef && scannerRef.current) {
+                    await Quagga.start();
+                    if (onScannerReady) {
+                        onScannerReady();
+                    }
+                }
+            });
+            Quagga.onDetected(errorCheck);
+        };
+        init();
+        // cleanup by turning off the camera and any listeners
         return () => {
+            ignoreStart = true;
+            Quagga.stop();
             Quagga.offDetected(errorCheck);
             Quagga.offProcessed(handleProcessed);
-            Quagga.stop();
         };
-    }, [cameraId, onDetected, onScannerReady, scannerRef, errorCheck, constraints, locator, decoders, locate]);
+    }, [cameraId, onDetected, onScannerReady, scannerRef, errorCheck, constraints, locator, decoders, locate, facingMode]);
     return null;
 }
 
@@ -130,7 +147,6 @@ Scanner.propTypes = {
     facingMode: PropTypes.string,
     constraints: PropTypes.object,
     locator: PropTypes.object,
-    numOfWorkers: PropTypes.number,
     decoders: PropTypes.array,
     locate: PropTypes.bool,
 };
