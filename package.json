@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@ericblade/quagga2": "^1.8.2",
-    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/jest-dom": "^6.0.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^14.4.3",
     "react": "^18.2.0",
