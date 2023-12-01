@@ -3,7 +3,7 @@
   "version": "1.1.0",
   "private": true,
   "dependencies": {
-    "@ericblade/quagga2": "^1.8.2",
+    "@ericblade/quagga2": "^1.8.3",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^14.4.3",
